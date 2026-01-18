@@ -345,3 +345,6 @@ dist
 
 # env files (can opt-in for committing if needed)
 .env*
+
+ecosystem.config.js
+start.sh
