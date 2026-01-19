@@ -3,8 +3,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faEnvelopeSquare, faInfoCircle, faSearch, faToggleOff, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import ContactForm from "@/app/components/dialogs/ContactForm";
-import { BaseDialog } from "@/app/components/dialogs/BaseDialog";
+import ContactForm from "@/src/app/components/dialogs/ContactForm";
+import { BaseDialog } from "@/src/app/components/dialogs/BaseDialog";
 import { useState } from "react";
 
 export default function Navbar() {

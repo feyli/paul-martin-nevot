@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
         turbopack: {
             root: path.resolve(__dirname)
         },
+	reactStrictMode: true,
+	output: 'standalone',
         images: {
             remotePatterns: [
                 {
