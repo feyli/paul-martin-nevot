@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <div className="flex flex-col grow items-center gap-6 justify-center">
             <div className={"flex flex-row gap-4 w-1/3"}>
-                <h1 className="text-4xl font-bold text-zinc-800 text-right self-end">
+                <h1 className="text-4xl font-bold text-zinc-800 dark:text-white text-right self-end">
                     Bienvenue sur le site personnel de Paul Martin Nevot
                 </h1>
                 <Image src={"/paul-martin-nevot.webp"} alt={"photo de Paul Martin Nevot"} width={1792} height={2400} className={"w-auto h-64"}/>

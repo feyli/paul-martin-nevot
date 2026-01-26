@@ -37,7 +37,7 @@ export default function Snackbar({ message, isOpen, onClose, duration = 3000 }: 
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
         >
-            <div className="bg-gray-800 text-white text-center px-6 py-3 rounded-lg shadow-lg">
+            <div className="bg-gray-800 dark:bg-gray-700 text-white text-center px-6 py-3 rounded-lg shadow-lg">
                 {message}
             </div>
         </div>

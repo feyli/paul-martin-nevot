@@ -1,16 +1,18 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faEnvelopeSquare, faHashtag, faInfoCircle, faSearch, faToggleOff, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelopeSquare, faHashtag, faInfoCircle, faSearch, faToggleOff, faToggleOn, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import ContactForm from "@/src/app/components/dialogs/ContactForm";
 import { BaseDialog } from "@/src/app/components/dialogs/BaseDialog";
 import React, { useState } from "react";
 import Snackbar from "@/src/app/components/Snackbar";
+import { useTheme } from "@/src/app/providers/ThemeProvider";
 
 export default function Navbar() {
     const [isContactDialogOpen, setIsContactDialogOpen] = useState<boolean>(false);
     const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false);
+    const { theme, toggleTheme } = useTheme();
 
     const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -33,8 +35,8 @@ export default function Navbar() {
                         <Link href={"/information"}>
                             <FontAwesomeIcon icon={faInfoCircle}/>
                         </Link>
-                        <div onClick={() => alert("To be implemented")}>
-                            <FontAwesomeIcon icon={faToggleOff}/>
+                        <div onClick={toggleTheme} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>
+                            <FontAwesomeIcon icon={theme === 'light' ? faToggleOff : faToggleOn}/>
                         </div>
                     </div>
                 </div>
@@ -48,14 +50,14 @@ export default function Navbar() {
                     <Link href={"https://x.com/feylidev/"} target={"_blank"} rel={"noopener noreferrer"} className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square"}>
                         <FontAwesomeIcon icon={faHashtag}/>
                     </Link>
-                    <div className={"rounded-full flex flex-row items-center gap-2 px-3 bg-white text-black h-8 text-sm border border-gray-300"}>
+                    <div className={"rounded-full flex flex-row items-center gap-2 px-3 bg-white dark:bg-gray-800 text-black dark:text-white h-8 text-sm border border-gray-300 dark:border-gray-600"}>
                         <input 
                             type={"text"} 
                             placeholder={"Rechercher"} 
-                            className={"bg-transparent outline-none w-20 focus:w-56"}
+                            className={"bg-transparent outline-none w-20 focus:w-56 placeholder:text-gray-500 dark:placeholder:text-gray-400"}
                             onKeyDown={handleSearchKeyDown}
                         />
-                        <FontAwesomeIcon icon={faSearch} className={"text-gray-800 text-xs shrink-0"}/>
+                        <FontAwesomeIcon icon={faSearch} className={"text-gray-800 dark:text-gray-200 text-xs shrink-0"}/>
                     </div>
                 </div>
             </nav>
