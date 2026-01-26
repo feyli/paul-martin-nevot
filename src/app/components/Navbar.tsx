@@ -57,8 +57,7 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className={"flex flex-row items-center h-9 gap-1"}>
-                    <input
-                        type={"button"}
+                    <button
                         className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square cursor-pointer"} 
                         onClick={() => setIsContactDialogOpen(true)}
                         onMouseEnter={handleContactPreload}
@@ -67,7 +66,7 @@ export default function Navbar() {
                         aria-label="Open contact form"
                     >
                         <FontAwesomeIcon icon={faEnvelopeSquare}/>
-                    </input>
+                    </button>
                     <Link href={"https://www.linkedin.com/in/mathis-fautsch-10382033a/"} target={"_blank"} rel={"noopener noreferrer"} className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square"}>
                         <FontAwesomeIcon icon={faUserGraduate}/>
                     </Link>
