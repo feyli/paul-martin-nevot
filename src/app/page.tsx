@@ -10,12 +10,13 @@ export default function Home() {
                 <Image 
                     src={"/paul-martin-nevot.webp"} 
                     alt={"photo de Paul Martin Nevot"} 
-                    width={1792} 
-                    height={2400} 
+                    width={382} 
+                    height={512} 
                     className={"w-auto h-64"}
                     sizes="(max-width: 768px) 50vw, 382px"
-                    quality={85}
-                    fetchPriority={"high"}
+                    quality={75}
+                    fetchPriority="high"
+                    loading="eager"
                 />
             </div>
         </div>
