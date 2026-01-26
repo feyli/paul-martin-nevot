@@ -9,7 +9,7 @@
     --color-darker: var(--darker);
 }
 
-@variant dark (&:where(.dark, .dark *));
+@variant dark (.dark &);
 
 :root {
     --background: #ffffff;
