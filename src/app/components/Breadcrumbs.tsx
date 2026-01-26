@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Image } from "next/dist/client/image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { Image } from "next/dist/client/image-component";
 
 export default function Breadcrumbs() {
     const pathname = usePathname();

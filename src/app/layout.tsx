@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/src/app/components/Navbar";
 import React from "react";
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import { config, dom } from '@fortawesome/fontawesome-svg-core';
 import Breadcrumbs from "@/src/app/components/Breadcrumbs";
 import { ThemeProvider } from "@/src/app/providers/ThemeProvider";
 import { cookies } from "next/headers";
@@ -26,12 +25,18 @@ export default async function RootLayout({
     
     return (
         <html lang="en" className={theme === 'dark' ? 'dark' : ''}>
+        <head>
+            <style>{dom.css()}</style>
+            <link rel="dns-prefetch" href="https://www.mickael-martin-nevot.com" />
+            <link rel="preconnect" href="https://www.mickael-martin-nevot.com" crossOrigin="anonymous" />
+            <title>Paul Martin-Nevot</title>
+        </head>
         <body
         >
             <ThemeProvider initialTheme={theme}>
                 <div className={"flex flex-col gap-0.5 flex-1 min-h-screen"}>
                     <Navbar/>
-                    <Breadcrumbs/>
+                    <Breadcrumbs />
                     <main className={"flex grow"}>
                         {children}
                     </main>

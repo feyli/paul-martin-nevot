@@ -3,16 +3,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faEnvelopeSquare, faHashtag, faInfoCircle, faSearch, faToggleOff, faToggleOn, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import ContactForm from "@/src/app/components/dialogs/ContactForm";
-import { BaseDialog } from "@/src/app/components/dialogs/BaseDialog";
+import dynamic from 'next/dynamic';
 import React, { useState } from "react";
-import Snackbar from "@/src/app/components/Snackbar";
 import { useTheme } from "@/src/app/providers/ThemeProvider";
+
+const ContactForm = dynamic(() => import('@/src/app/components/dialogs/ContactForm'), {
+    ssr: false
+});
+
+const BaseDialog = dynamic(() => import('@/src/app/components/dialogs/BaseDialog').then(mod => ({ default: mod.BaseDialog })), {
+    ssr: false
+});
+
+const Snackbar = dynamic(() => import('@/src/app/components/Snackbar'), {
+    ssr: false
+});
 
 export default function Navbar() {
     const [isContactDialogOpen, setIsContactDialogOpen] = useState<boolean>(false);
     const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false);
     const { theme, toggleTheme } = useTheme();
+
+    // Preload dialog components on hover/focus for instant perceived performance
+    const handleContactPreload = () => {
+        import('@/src/app/components/dialogs/ContactForm');
+        import('@/src/app/components/dialogs/BaseDialog');
+    };
 
     const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -41,9 +57,17 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className={"flex flex-row items-center h-9 gap-1"}>
-                    <div className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square cursor-pointer"} onClick={() => setIsContactDialogOpen(true)}>
+                    <input
+                        type={"button"}
+                        className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square cursor-pointer"} 
+                        onClick={() => setIsContactDialogOpen(true)}
+                        onMouseEnter={handleContactPreload}
+                        onFocus={handleContactPreload}
+                        tabIndex={0}
+                        aria-label="Open contact form"
+                    >
                         <FontAwesomeIcon icon={faEnvelopeSquare}/>
-                    </div>
+                    </input>
                     <Link href={"https://www.linkedin.com/in/mathis-fautsch-10382033a/"} target={"_blank"} rel={"noopener noreferrer"} className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square"}>
                         <FontAwesomeIcon icon={faUserGraduate}/>
                     </Link>
