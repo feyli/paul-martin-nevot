@@ -23,13 +23,13 @@ export default async function RootLayout({
     const themeCookie = cookieStore.get('theme');
     const theme = themeCookie?.value === 'dark' ? 'dark' : 'light';
     
+    // noinspection HtmlRequiredTitleElement
     return (
         <html lang="en" className={theme === 'dark' ? 'dark' : ''}>
         <head>
             <style>{dom.css()}</style>
             <link rel="dns-prefetch" href="https://www.mickael-martin-nevot.com" />
             <link rel="preconnect" href="https://www.mickael-martin-nevot.com" crossOrigin="anonymous" />
-            <title>Paul Martin-Nevot</title>
         </head>
         <body
         >
