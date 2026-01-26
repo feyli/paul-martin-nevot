@@ -19,13 +19,20 @@ export function BaseDialog({ isOpen, onClose, children }: { isOpen: boolean; onC
         return () => document.removeEventListener("keydown", handler);
     }, [onClose]);
 
+    const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        // Only close if clicking the overlay itself, not its children
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
     if (!render) return null;
 
     const container = document.getElementById("modal-container");
     if (!container) return null; // still not mounted
 
     return createPortal(
-        <div className={`modal-overlay ${isOpen && "show"}`}>
+        <div className={`modal-overlay ${isOpen && "show"}`} onClick={handleOverlayClick}>
             {children}
         </div>,
         container
