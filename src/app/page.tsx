@@ -13,7 +13,7 @@ export default function Home() {
                     width={382} 
                     height={512} 
                     className={"w-auto h-64"}
-                    sizes="(max-width: 768px) 50vw, 382px"
+                    sizes="382px"
                     quality={75}
                     fetchPriority="high"
                     loading="eager"
