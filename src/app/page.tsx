@@ -7,7 +7,15 @@ export default function Home() {
                 <h1 className="text-4xl font-bold text-zinc-800 dark:text-white text-right self-end">
                     Bienvenue sur le site personnel de Paul Martin Nevot
                 </h1>
-                <Image src={"/paul-martin-nevot.webp"} alt={"photo de Paul Martin Nevot"} width={1792} height={2400} className={"w-auto h-64"}/>
+                <Image 
+                    src={"/paul-martin-nevot.webp"} 
+                    alt={"photo de Paul Martin Nevot"} 
+                    width={1792} 
+                    height={2400} 
+                    className={"w-auto h-64"}
+                    sizes="(max-width: 768px) 50vw, 256px"
+                    quality={85}
+                />
             </div>
         </div>
     );
