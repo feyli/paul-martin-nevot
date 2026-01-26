@@ -1,14 +1,22 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faEnvelopeSquare, faInfoCircle, faSearch, faToggleOff, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelopeSquare, faHashtag, faInfoCircle, faSearch, faToggleOff, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import ContactForm from "@/src/app/components/dialogs/ContactForm";
 import { BaseDialog } from "@/src/app/components/dialogs/BaseDialog";
-import { useState } from "react";
+import React, { useState } from "react";
+import Snackbar from "@/src/app/components/Snackbar";
 
 export default function Navbar() {
     const [isContactDialogOpen, setIsContactDialogOpen] = useState<boolean>(false);
+    const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false);
+
+    const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            setIsSnackbarOpen(true);
+        }
+    };
 
     return (
         <>
@@ -37,8 +45,16 @@ export default function Navbar() {
                     <Link href={"https://www.linkedin.com/in/mathis-fautsch-10382033a/"} target={"_blank"} rel={"noopener noreferrer"} className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square"}>
                         <FontAwesomeIcon icon={faUserGraduate}/>
                     </Link>
+                    <Link href={"https://x.com/feylidev/"} target={"_blank"} rel={"noopener noreferrer"} className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square"}>
+                        <FontAwesomeIcon icon={faHashtag}/>
+                    </Link>
                     <div className={"rounded-full flex flex-row items-center gap-2 px-3 bg-white text-black h-8 text-sm border border-gray-300"}>
-                        <input type={"text"} placeholder={"Rechercher"} className={"bg-transparent outline-none w-20 focus:w-56"}/>
+                        <input 
+                            type={"text"} 
+                            placeholder={"Rechercher"} 
+                            className={"bg-transparent outline-none w-20 focus:w-56"}
+                            onKeyDown={handleSearchKeyDown}
+                        />
                         <FontAwesomeIcon icon={faSearch} className={"text-gray-800 text-xs shrink-0"}/>
                     </div>
                 </div>
@@ -46,6 +62,11 @@ export default function Navbar() {
             <BaseDialog isOpen={isContactDialogOpen} onClose={() => setIsContactDialogOpen(false)}>
                 <ContactForm/>
             </BaseDialog>
+            <Snackbar 
+                message="Il n'y a pas de documents, ne vous attendez pas à ce que la recherche fonctionne"
+                isOpen={isSnackbarOpen}
+                onClose={() => setIsSnackbarOpen(false)}
+            />
         </>
     )
 }

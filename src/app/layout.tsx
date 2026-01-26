@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/src/app/components/navbar";
+import Navbar from "@/src/app/components/Navbar";
 import React from "react";
 import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faBars, faHome, faInfoCircle, faToggleOff } from "@fortawesome/free-solid-svg-icons";
-import Breadcrumbs from "@/src/app/components/breadcrumbs";
+import Breadcrumbs from "@/src/app/components/Breadcrumbs";
 
 library.add(faInfoCircle, faBars, faToggleOff, faHome);
 
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-    title: "Paul Martin Nevot",
-    description: "Site web personnel de Paul Martin Nevot",
+    title: "Paul Martin-Nevot",
+    description: "Site web personnel de Paul Martin-Nevot",
 };
 
 export default function RootLayout({
