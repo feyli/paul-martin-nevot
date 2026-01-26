@@ -15,7 +15,7 @@ export default function Home() {
                     className={"w-auto h-64"}
                     sizes="(max-width: 768px) 50vw, 382px"
                     quality={85}
-                    priority
+                    fetchPriority={"high"}
                 />
             </div>
         </div>
