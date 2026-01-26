@@ -13,8 +13,9 @@ export default function Home() {
                     width={1792} 
                     height={2400} 
                     className={"w-auto h-64"}
-                    sizes="(max-width: 768px) 50vw, 256px"
+                    sizes="(max-width: 768px) 50vw, 382px"
                     quality={85}
+                    priority
                 />
             </div>
         </div>
