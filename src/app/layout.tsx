@@ -41,8 +41,6 @@ export default async function RootLayout({
                         {children}
                     </main>
                 </div>
-                {/* Portal target for client-side modals */}
-                <div id="modal-container" />
             </ThemeProvider>
         </body>
         </html>

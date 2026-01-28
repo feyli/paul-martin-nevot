@@ -6,28 +6,19 @@ import Link from "next/link";
 import dynamic from 'next/dynamic';
 import React, { useState } from "react";
 import { useTheme } from "@/src/app/providers/ThemeProvider";
+import Snackbar from "@/src/app/components/Snackbar";
 
 const ContactForm = dynamic(() => import('@/src/app/components/dialogs/ContactForm'), {
     ssr: false
 });
 
-const BaseDialog = dynamic(() => import('@/src/app/components/dialogs/BaseDialog').then(mod => ({ default: mod.BaseDialog })), {
-    ssr: false
-});
-
-const Snackbar = dynamic(() => import('@/src/app/components/Snackbar'), {
-    ssr: false
-});
-
 export default function Navbar() {
-    const [isContactDialogOpen, setIsContactDialogOpen] = useState<boolean>(false);
     const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false);
-    const { theme, toggleTheme } = useTheme();
+    const {theme, toggleTheme} = useTheme();
 
     // Preload dialog components on hover/focus for instant perceived performance
     const handleContactPreload = () => {
         import('@/src/app/components/dialogs/ContactForm');
-        import('@/src/app/components/dialogs/BaseDialog');
     };
 
     const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -35,6 +26,13 @@ export default function Navbar() {
             setIsSnackbarOpen(true);
         }
     };
+
+    const contactDialogRef = React.useRef<HTMLDialogElement>(null);
+
+    const openContactDialog = () => {
+        if (!contactDialogRef.current) return;
+        contactDialogRef.current.showModal();
+    }
 
     return (
         <>
@@ -58,8 +56,8 @@ export default function Navbar() {
                 </div>
                 <div className={"flex flex-row items-center h-9 gap-1"}>
                     <button
-                        className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square cursor-pointer"} 
-                        onClick={() => setIsContactDialogOpen(true)}
+                        className={"rounded-sm h-full flex flex-row items-center justify-center bg-dark hover:bg-darker aspect-square cursor-pointer"}
+                        onClick={() => openContactDialog()}
                         onMouseEnter={handleContactPreload}
                         onFocus={handleContactPreload}
                         tabIndex={0}
@@ -74,9 +72,9 @@ export default function Navbar() {
                         <FontAwesomeIcon icon={faHashtag}/>
                     </Link>
                     <div className={"rounded-full flex flex-row items-center gap-2 px-3 bg-white dark:bg-gray-800 text-black dark:text-white h-8 text-sm border border-gray-300 dark:border-gray-600"}>
-                        <input 
-                            type={"text"} 
-                            placeholder={"Rechercher"} 
+                        <input
+                            type={"text"}
+                            placeholder={"Rechercher"}
                             className={"bg-transparent outline-none w-20 focus:w-56 placeholder:text-gray-500 dark:placeholder:text-gray-400"}
                             onKeyDown={handleSearchKeyDown}
                         />
@@ -84,10 +82,10 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            <BaseDialog isOpen={isContactDialogOpen} onClose={() => setIsContactDialogOpen(false)}>
+            <dialog ref={contactDialogRef} closedby={"any"}>
                 <ContactForm/>
-            </BaseDialog>
-            <Snackbar 
+            </dialog>
+            <Snackbar
                 message="Il n'y a pas de documents, ne vous attendez pas à ce que la recherche fonctionne"
                 isOpen={isSnackbarOpen}
                 onClose={() => setIsSnackbarOpen(false)}
