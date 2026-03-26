@@ -6,6 +6,11 @@ import { config, dom } from '@fortawesome/fontawesome-svg-core';
 import Breadcrumbs from "@/src/app/components/Breadcrumbs";
 import { ThemeProvider } from "@/src/app/providers/ThemeProvider";
 import { cookies } from "next/headers";
+import localFont from "next/font/local";
+
+const constantia = localFont({
+    src: '../../public/fonts/constan.woff2'
+})
 
 config.autoAddCss = false;
 
@@ -25,11 +30,12 @@ export default async function RootLayout({
     
     // noinspection HtmlRequiredTitleElement
     return (
-        <html lang="en" className={theme === 'dark' ? 'dark' : ''}>
+        <html lang="en" className={theme === 'dark' ? 'dark' : '' + ' ' + constantia.className}>
         <head>
             <style>{dom.css()}</style>
             <link rel="dns-prefetch" href="https://www.mickael-martin-nevot.com" />
             <link rel="preconnect" href="https://www.mickael-martin-nevot.com" crossOrigin="anonymous" />
+            <meta name="apple-mobile-web-app-title" content="Paul Martin-Nevot" />
         </head>
         <body
         >

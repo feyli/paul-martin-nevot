@@ -43,9 +43,16 @@ export default function Navbar() {
                         <span className={"rounded-full text-xs bg-dark px-2 py-0.5"}>Bêta</span>
                     </div>
                     <div className={"flex flex-row items-center h-full *:h-full *:w-9 *:flex *:flex-col *:items-center *:justify-center *:hover:bg-white/20 *:cursor-pointer"}>
-                        <div onClick={() => alert("To be implemented")}>
+                        <button className={"relative"} popoverTarget={"burger-menu"} popoverTargetAction={"toggle"}>
                             <FontAwesomeIcon icon={faBars}/>
-                        </div>
+                            <div popover={"auto"} id={"burger-menu"} className={"absolute top-10"}>
+                                <ul className={"flex flex-col bg-white dark:bg-gray-800 text-black dark:text-white *:p-2"}>
+                                    <li>Test 1</li>
+                                    <li>Test 2</li>
+                                    <li>Test 3</li>
+                                </ul>
+                            </div>
+                        </button>
                         <Link href={"/information"}>
                             <FontAwesomeIcon icon={faInfoCircle}/>
                         </Link>
