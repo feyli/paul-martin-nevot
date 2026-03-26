@@ -9,7 +9,7 @@ export default function Home() {
                 </h1>
                 <Image 
                     src={"/images/paul-martin-nevot.webp"} 
-                    alt={"photo de Paul Martin Nevot"} 
+                    alt={"Photo de Paul Martin Nevot"}
                     width={382} 
                     height={512} 
                     className={"w-auto h-64"}
