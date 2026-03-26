@@ -8,7 +8,7 @@ export default function Home() {
                     Bienvenue sur le site personnel de Paul Martin Nevot
                 </h1>
                 <Image 
-                    src={"/paul-martin-nevot.webp"} 
+                    src={"/images/paul-martin-nevot.webp"} 
                     alt={"photo de Paul Martin Nevot"} 
                     width={382} 
                     height={512} 
