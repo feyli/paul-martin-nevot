@@ -2,6 +2,7 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faEnvelopeSquare, faHashtag, faInfoCircle, faSearch, faToggleOff, faToggleOn, faUserGraduate } from "@fortawesome/free-solid-svg-icons";
+import { Image } from "next/dist/client/image-component";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
 import React, { useState } from "react";
@@ -38,6 +39,9 @@ export default function Navbar() {
         <>
             <nav className={"flex flex-row items-center justify-between bg-linear-to-b px-2 from-primary to-secondary rounded-b-[5px] text-white"}>
                 <div className={"flex flex-row items-center h-12.5 gap-3"}>
+                    <Link href={"/"}>
+                        <Image src={"/web-app-manifest-192x192.png"} alt={"Logo du site"} width={42} height={42} className={"rounded-full border-2 border-white hover:opacity-50"}/>
+                    </Link>
                     <div className={"flex flex-row items-center gap-1"}>
                         <span className={"text-white text-lg"}>Pas un recueil de cours</span>
                         <span className={"rounded-full text-xs bg-dark px-2 py-0.5"}>Bêta</span>
